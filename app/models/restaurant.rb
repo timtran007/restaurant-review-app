@@ -4,6 +4,6 @@ class Restaurant < ApplicationRecord
 
     validates :name, presence: true
     validates :address, presence: true
-    validates :cuisine, inclusion: { in: ['American', 'Mexican', 'Italian', 'Asian', 'Mediterranean', 'French']}
+    validates :cuisine, presence: true
     validates :price, numericality: {in: 1..3}
 end

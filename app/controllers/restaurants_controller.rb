@@ -1,11 +1,12 @@
 class RestaurantsController < ApplicationController
     def index
         restaurants = Restaurant.all
-        render json: restaurants, include: ['users', 'users.reviews']
+        render json: restaurants
     end
 
     def show
         restaurant = Restaurant.find(params[:id])
-        render json: restaurant, include: ['users', 'users.reviews']
+        # binding.break
+        render json: restaurant
     end
 end

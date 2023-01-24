@@ -6,7 +6,6 @@ class RestaurantsController < ApplicationController
 
     def show
         restaurant = Restaurant.find(params[:id])
-        # binding.break
         render json: restaurant
     end
 end

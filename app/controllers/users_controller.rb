@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     before_action :authorize
     skip_before_action :authorize, only: [:create]
 
+    # def index
+    #     users = User.all
+    #     render json: users
+    # end
+
     def create
         binding.break
         user = User.create!(user_params)

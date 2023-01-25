@@ -11,8 +11,8 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        user = User.find(sessions[:user_id])
-        review = user.reviews.create(review_params)
+        user = User.find(session[:user_id])
+        review = user.reviews.create!(review_params)
         render json: review, status: :created
     end
 

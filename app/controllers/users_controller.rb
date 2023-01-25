@@ -4,12 +4,14 @@ class UsersController < ApplicationController
     skip_before_action :authorize, only: [:create]
 
     def create
+        binding.break
         user = User.create!(user_params)
         if user &.authenticate(params[:password])
             session[:user_id] = user.id
             render json: user, status: :created
         else
             render json: {errors: user.errors.full_messages}
+        end
     end
     
     def show
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        params.permit(:name, :image_url, :user_name, :passowrd, :password_confirmation)
+        params.permit(:name, :image_url, :user_name, :password, :password_confirmation)
     end
 
 end

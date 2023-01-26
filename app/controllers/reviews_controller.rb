@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
     end
 
     def show
-        review = Review.find!(params[:id])
+        review = Review.find(params[:id])
         render json: review
     end
 
@@ -17,13 +17,18 @@ class ReviewsController < ApplicationController
     end
 
     def update
-        review = Review.find!(params[:id])
+        user = User.find(session[:user_id])
+        review = Review.find(params[:id])
         review.update(review_params)
         render json: review
     end
 
     def destroy
-
+        binding.break
+        user = User.find(session[:user_id])
+        review = user.reviews.find(params[:id].to_i)
+        review.destroy
+        head :no_content
     end
 
     private

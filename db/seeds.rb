@@ -6,6 +6,19 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+tim = User.create(
+    name: "Tim",
+    user_name: "tim",
+    image_url: "https://ca.slack-edge.com/T02MD9XTF-U03UFUJS7UH-bd877fb5ef68-512",
+    password: "12345",
+)
+
+vanessa = User.create(
+    name: "Vanessa",
+    user_name: "vanessa",
+    image_url: "https://decisivedigitalmarketing.com/wp-content/uploads/bb-plugin/cache/IMG_8514-150x150-circle.jpg",
+    password: "12345",
+)
 
 homeslice_pizza = Restaurant.create(
     name: "Homeslice Pizza",
@@ -48,19 +61,7 @@ red_ash = Restaurant.create(
     price: 3,
 )
 
-tim = User.create(
-    name: "Tim",
-    user_name: "tim",
-    image_url: "https://ca.slack-edge.com/T02MD9XTF-U03UFUJS7UH-bd877fb5ef68-512",
-    password_digest: "adfadfkadf",
-)
 
-vanessa = User.create(
-    name: "Vanessa",
-    user_name: "vanessa",
-    image_url: "https://decisivedigitalmarketing.com/wp-content/uploads/bb-plugin/cache/IMG_8514-150x150-circle.jpg",
-    password_digest: "adfadfkadf"
-)
 
 homeslice_pizza.reviews.create(
     headline: "Pizza is Good",

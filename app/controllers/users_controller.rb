@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 
     before_action :authorize
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :authorize, only: [:create, :index, :show]
 
-    # def index
-    #     users = User.all
-    #     render json: users
-    # end
+    def index
+        users = User.all
+        render json: users
+    end
 
     def create
-        binding.break
+        
         user = User.create!(user_params)
         if user &.authenticate(params[:password])
             session[:user_id] = user.id

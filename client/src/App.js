@@ -1,5 +1,9 @@
 import {Route, Switch} from 'react-router-dom'
 import './App.css';
+import RestaurantsContainer from './Components/RestaurantsContainer';
+import LoginPage from './Pages/LoginPage';
+import UserContainer from './Components/UserContainer';
+import Nav from './Components/Nav';
 
 function App() {
   return (
@@ -7,16 +11,16 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path='/'>
-            <RestaurantContainer />
+            <RestaurantsContainer />
           </Route>
           <Route path='/signup'>
-            <SignupForm />
+            <LoginPage />
           </Route>
           <Route path='/login'>
-            <LoginForm />
+            <LoginPage />
           </Route>
           <Route path='/profile'>
-            <ProfileContainer />
+            <UserContainer />
           </Route>
         </Switch>
     </div>

@@ -11,22 +11,21 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        user = User.find(session[:user_id])
-        review = user.reviews.create!(review_params)
+        find_user
+        review = find_user.reviews.create!(review_params)
         render json: review, status: :created
     end
 
     def update
-        user = User.find(session[:user_id])
-        review = user.reviews.find(params[:id])
+        find_user
+        review = find_user.reviews.find(params[:id])
         review.update(review_params)
         render json: review
     end
 
     def destroy
-        binding.break
-        user = User.find(session[:user_id])
-        review = user.reviews.find(params[:id].to_i)
+        find_user
+        review = find_user.reviews.find(params[:id].to_i)
         review.destroy
         head :no_content
     end

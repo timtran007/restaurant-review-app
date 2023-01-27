@@ -20,8 +20,8 @@ class UsersController < ApplicationController
     end
     
     def show
-        user = User.find(session[:user_id])
-        render json: user
+        find_user
+        render json: find_user
     end
 
     private

@@ -1,9 +1,11 @@
+//will house the get fetch request for all restaurants
 import {Route, Switch} from 'react-router-dom'
 import './App.css';
 import RestaurantsContainer from './Components/RestaurantsContainer';
 import LoginPage from './Pages/LoginPage';
-import UserContainer from './Components/UserContainer';
 import Nav from './Components/Nav';
+import SignupPage from './Pages/SignupPage'
+import UserPage from './Pages/UserPage';
 
 function App() {
   return (
@@ -14,13 +16,13 @@ function App() {
             <RestaurantsContainer />
           </Route>
           <Route path='/signup'>
-            <LoginPage />
+            <SignupPage />
           </Route>
           <Route path='/login'>
             <LoginPage />
           </Route>
           <Route path='/profile'>
-            <UserContainer />
+            <UserPage />
           </Route>
         </Switch>
     </div>

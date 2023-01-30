@@ -1,7 +1,5 @@
-
 import React from "react";
-import RestaurantCard from '../Components/RestaurantCard'
-
+import RestaurantCard from '../Components/RestaurantCard';
 
 function RestaurantsContainer({allRestaurants}) {
     return(

@@ -2,6 +2,7 @@
 
 
 import React from "react";
+import {NavLink} from "react-router-dom";
 import LoginForm from "../Components/LoginForm";
 
 
@@ -14,9 +15,9 @@ function LoginPage(){
     return(
         <div>
             <LoginForm />
-            <button onClick={handleButtonClick}>
-                Sign Up
-            </button>
+            <p>
+                Don't have an account yet? <NavLink to='/signup'>Sign Up here!</NavLink>
+            </p>
         </div>
     )
 }

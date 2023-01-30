@@ -9,7 +9,7 @@ function Nav(){
             <NavLink exact to="/">
                 Home
             </NavLink>
-            <NavLink to="/users/new">
+            <NavLink to="/signup">
                 Signup
             </NavLink>
             <NavLink to="/login">

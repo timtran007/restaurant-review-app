@@ -1,7 +1,5 @@
 import React from "react";
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import Image from 'react-bootstrap/Image'
+import Card from 'react-bootstrap/Card';
 
 function ReviewCard({review}){
     

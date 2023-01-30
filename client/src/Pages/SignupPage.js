@@ -1,9 +1,10 @@
 
 import React from "react";
 import SignupForm from "../Components/SignupForm";
+import { Link } from "react-router-dom";
 
 
-function LoginPage(){
+function SignupPage(){
     
     function handleButtonClick(){
 
@@ -11,15 +12,13 @@ function LoginPage(){
 
     return(
         <div>
+            <h2>Sign Up for an Account</h2>
             <SignupForm />
             <div>
-                <p>Already have an account?</p>
-                <button onClick={handleButtonClick}>
-                    Login
-                </button>
+                <p>Already have an account? <Link>Login here</Link>!</p>
             </div>
         </div>
     )
 }
 
-export default LoginPage
+export default SignupPage

@@ -3,10 +3,11 @@
 import React from "react";
 import RestaurantsContainer from "../Components/RestaurantsContainer";
 
-function RestaurantReviewPage() {
+function RestaurantReviewPage({allRestaurants}) {
+    
     return(
         <div>
-            <RestaurantsContainer />
+            <RestaurantsContainer allRestaurants={allRestaurants}/>
         </div>
     )
 }

@@ -8,8 +8,6 @@ import UserPage from './Pages/UserPage';
 import RestaurantReviewPage from './Pages/RestaurantReviewPage';
 
 //Things to do:
-
-//localhost:3000/restaurants
 // create state for user log in information to pass to sessions
 // pass props down to respective components
 
@@ -24,7 +22,6 @@ function App() {
     .then(resp => resp.json())
     .then(data => setAllRestaurants(data))
   }, [])
-  debugger
 
   return (
     <div className="App">

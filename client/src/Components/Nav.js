@@ -1,3 +1,5 @@
+//add condtion to not show sign up if user is logged in, instead show profile, reviews and logout
+//if user is not logged in show sign up and login links
 import React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -13,10 +15,13 @@ function Nav(){
             <NavLink to="/login">
                 Login
             </NavLink>
-            <NavLink to="profile">
+            <NavLink to="/profile">
                 Profile's Name
             </NavLink>
-            <NavLink to="logout">
+            <NavLink to="/profile/reviews">
+                My Reviews
+            </NavLink>
+            <NavLink to="/logout">
                 Logout
             </NavLink>
         </nav>

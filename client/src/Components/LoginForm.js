@@ -4,7 +4,6 @@ function LoginForm(){
     return(
         <form>
             <div>
-                <h2>Log In</h2>
                 <label htmlFor="username">Username</label>
                 <p>
                     <input

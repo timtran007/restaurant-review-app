@@ -1,9 +1,18 @@
-import React from "react";
 
-function RestaurantsContainer() {
+import React from "react";
+import RestaurantCard from '../Components/RestaurantCard'
+
+
+function RestaurantsContainer({allRestaurants}) {
     return(
         <div>
-            <p>Hello World!</p>
+            {allRestaurants.map(restaurant => {
+                <RestaurantCard 
+                    key={restaurant.id}
+                    restaurant={restaurant}
+                    reviews={restaurant.reviews}
+                />
+            }) }
         </div>
     )
 }

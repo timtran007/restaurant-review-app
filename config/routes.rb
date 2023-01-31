@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/user-reviews', to: 'users#user_reviews'
   # get '/users', to: 'users#index'
   # Defines the root path route ("/")
   # root "articles#index"

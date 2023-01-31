@@ -24,6 +24,11 @@ class UsersController < ApplicationController
         render json: find_user
     end
 
+    def user_reviews
+        find_user
+        render json: find_user.reviews
+    end
+
     private
     def user_params
         params.permit(:name, :image_url, :user_name, :password, :password_confirmation)

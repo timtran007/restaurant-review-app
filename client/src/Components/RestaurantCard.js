@@ -14,10 +14,10 @@ function RestaurantCard({restaurant, reviews}){
               <Card.Title>{restaurant.name}</Card.Title>
               <Card.Text>
                 {restaurant.address}
-                <p>
+                </Card.Text>
+                <Card.Text>
                     {restaurant.cuisine} | {restaurant.price} | ☆{restaurant.restaurant_rating} ({restaurant.number_of_reviews} reviews)
-                </p>
-              </Card.Text>
+                </Card.Text>
             </Card.Body>
             <div>
                 <Button size="sm" variant="primary">Read the Reviews</Button>{' '}

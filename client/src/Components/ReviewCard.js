@@ -9,7 +9,9 @@ function ReviewCard({review}){
                 <Card.Title>{review.headline}</Card.Title>
                 <Card.Text>
                     ☆{review.rating}
-                    <p>{review.comment}</p>
+                </Card.Text>
+                <Card.Text>
+                    {review.comment}
                 </Card.Text>
                 <Card.Subtitle>- {review.user_name}</Card.Subtitle>
                 

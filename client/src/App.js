@@ -16,6 +16,9 @@ function App() {
   // create state to house all restaurant information
   const [allRestaurants, setAllRestaurants] = useState([])
 
+  // create state for user
+  const [user, setUser] = useState(null)
+
   //write useEffect to do get fetch requests for all restaurants 
   useEffect(() =>{
     fetch('/restaurants')
@@ -23,17 +26,25 @@ function App() {
     .then(data => setAllRestaurants(data))
   }, [])
 
+  useEffect(() => {
+    fetch('/me').then( resp => {
+      if (resp.ok){
+        resp.json().then( user => setUser(user));
+      }
+    })
+  }, [])
+
   return (
     <div className="App">
-        <Navigation />
+        <Navigation user={user}/>
         <Switch>
           <Route exact path='/'>
             <RestaurantReviewPage allRestaurants={allRestaurants}/>
           </Route>
-          <Route path='/signup'>
+          <Route path='/signup' onLogin={setUser}>
             <SignupPage />
           </Route>
-          <Route path='/login'>
+          <Route path='/login' onLogin={setUser}>
             <LoginPage />
           </Route>
           <Route path='/profile'>

@@ -6,6 +6,8 @@ import Navigation from './Components/Navigation';
 import SignupPage from './Pages/SignupPage';
 import UserPage from './Pages/UserPage';
 import RestaurantReviewPage from './Pages/RestaurantReviewPage';
+import UserReviewsPage from './Pages/UserReviewsPage';
+
 
 //Things to do:
 // create state for user log in information to pass to sessions
@@ -13,11 +15,21 @@ import RestaurantReviewPage from './Pages/RestaurantReviewPage';
 
 
 function App() {
-  // create state to house all restaurant information
-  const [allRestaurants, setAllRestaurants] = useState([])
 
   // create state for user
   const [user, setUser] = useState(null)
+
+  // create state to house all restaurant information
+  const [allRestaurants, setAllRestaurants] = useState([])
+
+  useEffect(() => {
+    fetch('/me')
+    .then( resp => {
+      if (resp.ok){
+        resp.json().then( userInfo => setUser(userInfo));
+      }
+    })
+  }, [])
 
   //write useEffect to do get fetch requests for all restaurants 
   useEffect(() =>{
@@ -25,30 +37,25 @@ function App() {
     .then(resp => resp.json())
     .then(data => setAllRestaurants(data))
   }, [])
-
-  useEffect(() => {
-    fetch('/me').then( resp => {
-      if (resp.ok){
-        resp.json().then( user => setUser(user));
-      }
-    })
-  }, [])
-
+    
   return (
     <div className="App">
-        <Navigation user={user}/>
+        <Navigation user={user} setUser={setUser}/>
         <Switch>
           <Route exact path='/'>
             <RestaurantReviewPage allRestaurants={allRestaurants}/>
           </Route>
-          <Route path='/signup' onLogin={setUser}>
+          <Route path='/signup'>
             <SignupPage />
           </Route>
-          <Route path='/login' onLogin={setUser}>
-            <LoginPage />
+          <Route path='/login' >
+            <LoginPage onLogin={setUser}/>
           </Route>
-          <Route path='/profile'>
-            <UserPage />
+          <Route exact path='/profile'>
+            <UserPage user={user} onLogin={setUser}/>
+          </Route>
+          <Route path='/profile/reviews'>
+            <UserReviewsPage />
           </Route>
         </Switch>
     </div>

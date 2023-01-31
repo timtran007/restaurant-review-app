@@ -1,6 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-function LoginForm(){
+
+
+function LoginForm({onLogin}){
+    const history = useHistory()
+    const [errors, setErrors] = useState([])
     const initialFormData = {
         user_name: "",
         password: ""
@@ -17,13 +22,29 @@ function LoginForm(){
         })
     }
 
+    //use the useHistory hook to push to /profile, after logging in
     function handleSubmit(e){
         e.preventDefault()
+        fetch('/login', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+        .then((r) => {
+            if (r.ok) {
+                r.json().then( (user )=> onLogin(user))
+                history.push("/profile")
+            } else{
+                r.json().then( error => setErrors(error.errors))
+            }
+        })
     }
-
-
+    const displayError = errors.map( e => e)
     return(
         <form onSubmit={handleSubmit}>
+            {displayError}
             <div>
                 <label htmlFor="username">Username</label>
                 <p>
@@ -40,7 +61,7 @@ function LoginForm(){
                 <label htmlFor="password">password</label>
                 <p>
                     <input
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="enter password information"
                         onChange={handleChange}

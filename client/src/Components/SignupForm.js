@@ -1,6 +1,9 @@
 import React, {useState} from "react";
+import { useHistory } from "react-router-dom";
 
-function SignupForm({onLogin}){
+function SignupForm({onSignup}){
+    const [errors, setErrors] = useState([])
+    const history = useHistory()
     const initialFormData = {
         name: "",
         user_name: "",
@@ -22,10 +25,27 @@ function SignupForm({onLogin}){
     //set user with onLogin, use the useHistory hook to push to /profile
     function handleSubmit(e){
         e.preventDefault()
+        fetch('/signup', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        }).then( resp => {
+            if(resp.ok){
+                resp.json().then(user => onSignup(user))
+                history.push('/profile')
+            } else {
+                resp.json().then( error => setErrors(error.errors))
+            }
+        })
     }
 
+    const displayError = errors.map (e => e)
+
     return(
-        <form onSubmti={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+            {displayError}
             <div>
                 <label htmlFor='name'>Name</label>
                 <p> 
@@ -63,11 +83,11 @@ function SignupForm({onLogin}){
                 </p>
             </div>
             <div>
-                <label htmlFor="passwordConfirmation">Password Confirmation:</label>
+                <label htmlFor="password_confirmation">Password Confirmation:</label>
                 <p>
                     <input
                         type="password"
-                        name="passwordConfirmation"
+                        name="password_confirmation"
                         placeholder="confirm password"
                         onChange={handleChange}
                         value={formData.password_confirmation}

@@ -1,11 +1,11 @@
 import React from "react";
 
-function UserRestaurants() {
+function UserRestaurantCard() {
     return(
         <div>
-
+            
         </div>
     )
 }
 
-export default UserRestaurants
+export default UserRestaurantCard

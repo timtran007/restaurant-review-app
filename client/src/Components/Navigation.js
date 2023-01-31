@@ -1,14 +1,12 @@
-//add condtion to not show sign up if user is logged in, instead show profile, reviews and logout
-//if user is not logged in show sign up and login links
 import React from "react";
-import { NavLink } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Foodies_Logo from '../Foodies_Logo.png'
 
-function Navigation(){
-    //create conditional based on user logged in or not to see Navigation options
+function Navigation({user}){
+    //create handling of user logout
+
     return(
         <Navbar>
             <Container>
@@ -20,23 +18,29 @@ function Navigation(){
                         alt='Foodies logo'
                     />
                 </Navbar.Brand>
-                <Nav>
-                    <Nav.Link src="/signup">
-                        Signup
+                {!user ? (
+                    <Nav>
+                        <Nav.Link href="/signup">
+                            Signup
+                        </Nav.Link>
+                        <Nav.Link href="/login">
+                            Login
+                        </Nav.Link>
+                    </Nav>
+                    ) : (
+                    <Nav>
+                        <Nav.Link href="/profile">
+                            {user.user_name}
+                        </Nav.Link>
+                        <Nav.Link href="/profile/reviews">
+                            My Reviews
+                        </Nav.Link>
+                        <Nav.Link href="/logout">
+                            Logout
                     </Nav.Link>
-                    <Nav.Link src="/login">
-                        Login
-                    </Nav.Link>
-                    <Nav.Link src="/profile">
-                        Profile's Name
-                    </Nav.Link>
-                    <Nav.Link src="/profile/reviews">
-                        My Reviews
-                    </Nav.Link>
-                    <Nav.Link src="/logout">
-                        Logout
-                    </Nav.Link>
-                </Nav>
+                </Nav>)}
+                
+                    
             </Container>
         </Navbar>
     )

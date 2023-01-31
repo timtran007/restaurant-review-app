@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function SignupForm(){
+function SignupForm({onLogin}){
     const initialFormData = {
         name: "",
         user_name: "",
@@ -19,6 +19,7 @@ function SignupForm(){
         })
     }
 
+    //set user with onLogin, use the useHistory hook to push to /profile
     function handleSubmit(e){
         e.preventDefault()
     }
@@ -53,7 +54,7 @@ function SignupForm(){
                 <label htmlFor="password">Password:</label>
                 <p>
                     <input
-                        type="text"
+                        type="password"
                         name="password"
                         placeholder="enter password"
                         onChange={handleChange}
@@ -65,7 +66,7 @@ function SignupForm(){
                 <label htmlFor="passwordConfirmation">Password Confirmation:</label>
                 <p>
                     <input
-                        type="text"
+                        type="password"
                         name="passwordConfirmation"
                         placeholder="confirm password"
                         onChange={handleChange}

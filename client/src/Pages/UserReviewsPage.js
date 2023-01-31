@@ -1,11 +1,44 @@
 //intention of this page is to fetch get request for user.reviews, so that logged in users can delete or update their reviews
-import React from "react";
+//inherits the nested root from UserPage... /profile/reviews
+
+import React, {useEffect, useState} from "react";
 import ReviewsContainer from "../Components/ReviewsContainer";
 
-function UserReviewsPage(){
+function UserReviewsPage({user}){
+
+    const [userReviews, setUserReviews] = useState([])
+
+    useEffect(() =>{
+        fetch('/user-reviews')
+        .then(resp => {
+            if (resp.ok){
+                resp.json().then(reviews => setUserReviews(reviews))
+            }
+        })
+    },[])
+
+    function onEditReview(editedReview){
+
+    }
+
+    function onDeleteReview(deletedReview){
+
+    }
+    
     return(
         <div>
-            <ReviewsContainer />
+            UserReviewsPage
+            {userReviews.map( review => {
+                return(
+                    <ReviewsContainer 
+                        key={review.id}
+                        review={review}
+                        user={user}
+                        onEditReview={onEditReview}
+                        onDeleteReview={onDeleteReview}
+                    />
+                )
+            })}
         </div>
     )
 }

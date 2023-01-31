@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
-function SignupForm({onSignup}){
+function SignupForm({onLogin}){
     const [errors, setErrors] = useState([])
     const history = useHistory()
     const initialFormData = {
@@ -31,11 +31,13 @@ function SignupForm({onSignup}){
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(formData)
-        }).then( resp => {
-            if(resp.ok){
-                resp.json().then(user => onSignup(user))
+        })
+        .then( resp => {
+            if(resp.ok) {
+                resp.json()
+                .then(newUser => onLogin(newUser))
                 history.push('/profile')
-            } else {
+            } else{
                 resp.json().then( error => setErrors(error.errors))
             }
         })

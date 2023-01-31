@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import './App.css';
 import LoginPage from './Pages/LoginPage';
-import Nav from './Components/Nav';
+import Navigation from './Components/Navigation';
 import SignupPage from './Pages/SignupPage';
 import UserPage from './Pages/UserPage';
 import RestaurantReviewPage from './Pages/RestaurantReviewPage';
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-        <Nav />
+        <Navigation />
         <Switch>
           <Route exact path='/'>
             <RestaurantReviewPage allRestaurants={allRestaurants}/>

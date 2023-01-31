@@ -37,7 +37,7 @@ function App() {
     .then(resp => resp.json())
     .then(data => setAllRestaurants(data))
   }, [])
-    
+
   return (
     <div className="App">
         <Navigation user={user} setUser={setUser}/>
@@ -46,7 +46,7 @@ function App() {
             <RestaurantReviewPage allRestaurants={allRestaurants}/>
           </Route>
           <Route path='/signup'>
-            <SignupPage />
+            <SignupPage onLogin={setUser}/>
           </Route>
           <Route path='/login' >
             <LoginPage onLogin={setUser}/>

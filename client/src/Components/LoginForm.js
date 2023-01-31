@@ -18,10 +18,10 @@ function LoginForm({onLogin}){
         const value = e.target.value
         setFormData({
             ...formData,
-            [key] : value
+            [key]: value
         })
     }
-
+    
     //use the useHistory hook to push to /profile, after logging in
     function handleSubmit(e){
         e.preventDefault()
@@ -32,12 +32,13 @@ function LoginForm({onLogin}){
             },
             body: JSON.stringify(formData)
         })
-        .then((r) => {
-            if (r.ok) {
-                r.json().then( (user )=> onLogin(user))
+        .then((resp) => {
+            if (resp.ok) {
+                resp.json()
+                .then(userInfo => onLogin(userInfo))
                 history.push("/profile")
             } else{
-                r.json().then( error => setErrors(error.errors))
+                resp.json().then( error => setErrors(error.errors))
             }
         })
     }
@@ -46,7 +47,7 @@ function LoginForm({onLogin}){
         <form onSubmit={handleSubmit}>
             {displayError}
             <div>
-                <label htmlFor="username">Username</label>
+                <label htmlFor="user_name">Username</label>
                 <p>
                     <input
                         type="text"

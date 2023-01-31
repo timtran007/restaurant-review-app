@@ -1,8 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 
 function SignupForm(){
+    const initialFormData = {
+        name: "",
+        user_name: "",
+        password: "",
+        password_confirmation: ""
+    }
+
+    const [formData, setFormData] = useState(initialFormData)
+
+    function handleChange(e){
+        const key = e.target.name
+        const value = e.target.value
+        setFormData({
+            ...formData,
+            [key]: value
+        })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+    }
+
     return(
-        <form>
+        <form onSubmti={handleSubmit}>
             <div>
                 <label htmlFor='name'>Name</label>
                 <p> 
@@ -10,16 +32,20 @@ function SignupForm(){
                         type="text"
                         name="name"
                         placeholder="enter name"
+                        onChange={handleChange}
+                        value={formData.name}
                     />
                 </p>
             </div>
             <div>
-                <label htmlFor="username">Username:</label>
+                <label htmlFor="user_name">Username:</label>
                 <p>
                     <input
                         type="text"
-                        name="username"
+                        name="user_name"
                         placeholder="enter username"
+                        onChange={handleChange}
+                        value={formData.user_name}
                     />
                 </p>
             </div>
@@ -30,6 +56,8 @@ function SignupForm(){
                         type="text"
                         name="password"
                         placeholder="enter password"
+                        onChange={handleChange}
+                        value={formData.password}
                     />
                 </p>
             </div>
@@ -40,6 +68,8 @@ function SignupForm(){
                         type="text"
                         name="passwordConfirmation"
                         placeholder="confirm password"
+                        onChange={handleChange}
+                        value={formData.password_confirmation}
                     />
                 </p>
             </div>

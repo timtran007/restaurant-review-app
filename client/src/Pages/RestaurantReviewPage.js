@@ -7,6 +7,7 @@ function RestaurantReviewPage({allRestaurants}) {
     
     return(
         <div>
+            <h1>Restaurants Reviewed by Foodies</h1>
             <RestaurantsContainer allRestaurants={allRestaurants}/>
         </div>
     )

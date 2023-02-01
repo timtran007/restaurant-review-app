@@ -1,10 +1,12 @@
 import React from "react";
 import Button from 'react-bootstrap/Button'
 
-function DeleteReview({onDeleteReview}){
+function DeleteReview({onDeleteReview, review}){
+
+    
 
     return(
-        <Button variant='secondary' size='sm'>
+        <Button onClick={handleDelete} variant='secondary' size='sm'>
             Delete My Review
         </Button>
     )

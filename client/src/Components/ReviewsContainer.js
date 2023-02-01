@@ -19,7 +19,7 @@ function ReviewsContainer({review, user, onEditReview, onDeleteReview}){
                         <Card.Text>
                             {review.comment}
                         </Card.Text>
-                        <EditReviewForm onEditReview={onEditReview}/>
+                        <EditReviewForm review={review} onEditReview={onEditReview}/>
                         <div>
                         <DeleteReview onDelete={onDeleteReview}/>
                         </div>

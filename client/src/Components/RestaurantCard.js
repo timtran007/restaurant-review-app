@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 function RestaurantCard({restaurant, reviews, user, onCreateReview}){
-    //create state to toggle button to show reviews
-    //pass user, if user we can show the button / show form to add a new review
+    //state to control showing more content
+    const [readReviewsClick, setReadReviewsClick] = useState(false)
+    const [addReviewClick, setAddReviewClick] = useState(false)
+
+    function handleReadReviewsClick(){
+        setReadReviewsClick(!readReviewsClick)
+    }
+
+    function handleAddReviewClick(){
+        setAddReviewClick(!addReviewClick)
+    }
     
     
     return(
@@ -23,27 +32,35 @@ function RestaurantCard({restaurant, reviews, user, onCreateReview}){
                 </Card.Text>
             </Card.Body>
             <div>
-                <Button size="sm" variant="primary">Read the Reviews</Button>{' '}
+                <Button 
+                    size="sm" 
+                    variant="primary"
+                    onClick={handleReadReviewsClick}
+                >
+                    Read the Reviews
+                </Button>
             </div>
-            {/* show up only when the user clicks on Read the Reviews Button */}
             {reviews.map(review => {
-                return(
-                    <ReviewCard 
-                        key={review.id}
-                        review={review}
-                    />
-                )
+                if (readReviewsClick){
+                    return(
+                        <ReviewCard 
+                            key={review.id}
+                            review={review}
+                        />
+                    ) 
+                } 
             })}
-            {/* show up only when user is signed in */}
             <div>
-                <Button variant='secondary' size='sm' >
+                <Button 
+                    variant='secondary' 
+                    size='sm' 
+                    onClick={handleAddReviewClick}
+                >
                     Add a New Review
                 </Button>
             </div>
-            {/* show up only when user clicks the button */}
-            <ReviewForm restaurant={restaurant} onCreateReview={onCreateReview} user={user}/>
+            { addReviewClick ? <ReviewForm restaurant={restaurant} onCreateReview={onCreateReview} user={user}/> : ""}
         </Card>
-        
         </div>
     )
 }

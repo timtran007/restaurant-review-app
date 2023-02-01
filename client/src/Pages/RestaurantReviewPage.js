@@ -3,12 +3,14 @@
 import React from "react";
 import RestaurantsContainer from "../Components/RestaurantsContainer";
 
-function RestaurantReviewPage({allRestaurants}) {
+//pass prop of user down to restaurants container...
+
+function RestaurantReviewPage({allRestaurants, user, onCreateReview}) {
     
     return(
         <div>
             <h1>Restaurants Reviewed by Foodies</h1>
-            <RestaurantsContainer allRestaurants={allRestaurants}/>
+            <RestaurantsContainer allRestaurants={allRestaurants} user={user} onCreateReview={onCreateReview}/>
         </div>
     )
 }

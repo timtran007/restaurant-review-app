@@ -1,8 +1,43 @@
-import React from "react";
+import React, {useState} from "react";
 
-function ReviewForm(){
+function ReviewForm({user, restaurant, onCreateReview}){
+    const initialFormData = {
+        headline: '',
+        rating: 0,
+        comment: '',
+        restaurant_id: restaurant.id,
+        user_id: user.id
+    }
+    const [formData, setFormData] = useState(initialFormData)
+
+    function handleChange(e){
+        const key = e.target.name
+        const value = e.target.value
+        setFormData({
+            ...formData,
+            [key]: value
+        })
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        fetch('/reviews', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }, 
+            body: JSON.stringify(formData)
+        }).then( resp => {
+            if(resp.ok){
+                resp.json().then(newReview => onCreateReview(newReview))
+            } else{
+                resp.json().then( error => error.errors)
+            }
+        })
+    }
+
     return(
-        <form>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="headline">Headline:</label>
                 <p>
@@ -10,6 +45,8 @@ function ReviewForm(){
                         type="text"
                         name="headline"
                         placeholder="enter headline"
+                        onChange={handleChange}
+                        value={formData.headline}
                     />
                 </p>
             </div>
@@ -20,6 +57,8 @@ function ReviewForm(){
                         type="number"
                         name="rating"
                         placeholder="enter 1-5"
+                        onChange={handleChange}
+                        value={formData.rating}
                     />
                 </p>
             </div>
@@ -30,6 +69,8 @@ function ReviewForm(){
                         type="textarea"
                         name="comment"
                         placeholder="Write a review"
+                        onChange={handleChange}
+                        value={formData.comment}
                     />
                 </p>
             </div>

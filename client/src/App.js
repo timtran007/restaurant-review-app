@@ -12,6 +12,7 @@ import UserReviewsPage from './Pages/UserReviewsPage';
 //Things to do:
 // create state for user log in information to pass to sessions
 // pass props down to respective components
+// pass user prop to RestaurantReviewpage, 
 
 
 function App() {
@@ -38,12 +39,36 @@ function App() {
     .then(data => setAllRestaurants(data))
   }, [])
 
+  function onCreateReview(newReview){
+    const restaurant = allRestaurants
+    .find( restaurant => restaurant.id === newReview.restaurant_id)
+
+    const newRestaurantReviewsArray = restaurant.reviews ? [...restaurant.reviews, newReview] : [newReview]
+
+    const updatedRestaurant = {
+      ...restaurant,
+      reviews: newRestaurantReviewsArray
+    }
+    const updatedRestaurants = allRestaurants
+    .map( r => {
+      if (r.id === updatedRestaurant.id){
+        return updatedRestaurant
+      } else{
+        return r
+      }
+    })
+    setAllRestaurants(updatedRestaurants)
+
+  }
+  
+
+  console.log(allRestaurants)
   return (
     <div className="App">
         <Navigation user={user} setUser={setUser}/>
         <Switch>
           <Route exact path='/'>
-            <RestaurantReviewPage allRestaurants={allRestaurants}/>
+            <RestaurantReviewPage allRestaurants={allRestaurants} user={user} onCreateReview={onCreateReview}/>
           </Route>
           <Route path='/signup'>
             <SignupPage onLogin={setUser}/>

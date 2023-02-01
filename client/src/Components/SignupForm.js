@@ -43,11 +43,15 @@ function SignupForm({onLogin}){
         })
     }
 
-    const displayError = errors.map (e => e)
+    const displayError = errors.map( e => {
+        console.log(e)
+        return(
+            <p key={e} style={{color:"red"}}>{e}</p>
+        )
+    })
 
     return(
         <form onSubmit={handleSubmit}>
-            {displayError}
             <div>
                 <label htmlFor='name'>Name</label>
                 <p> 
@@ -99,6 +103,7 @@ function SignupForm({onLogin}){
             <div>
                 <input type="submit" value="Sign up"/>
             </div>
+            {displayError}
         </form>
     )
 }

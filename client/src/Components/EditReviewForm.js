@@ -44,7 +44,12 @@ function EditReviewForm({onEditReview, review}){
         })
         
     }
-    const displayError = errors.map( e => e)
+    const displayError = errors.map( e => {
+        console.log(e)
+        return(
+            <p key={e} style={{color:"red"}}>{e}</p>
+        )
+    })
 
     return(
         <div>
@@ -55,7 +60,6 @@ function EditReviewForm({onEditReview, review}){
             { buttonClick ? (
             <form onSubmit={handleSubmit}>
                 <div>
-                    {displayError}
                     <label htmlFor="headline">Headline: </label>
                     <input
                         onChange={handleUpdate}
@@ -83,6 +87,7 @@ function EditReviewForm({onEditReview, review}){
                     />
                 </div>
                 <input type="submit" value="update my review"/>
+                {displayError}
             </form>) : ""}
         </div>
     )   

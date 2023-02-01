@@ -9,6 +9,7 @@ function ReviewForm({user, restaurant, onCreateReview}){
         user_id: user.id
     }
     const [formData, setFormData] = useState(initialFormData)
+    const [errors, setErrors] = useState([])
 
     function handleChange(e){
         const key = e.target.name
@@ -31,14 +32,23 @@ function ReviewForm({user, restaurant, onCreateReview}){
             if(resp.ok){
                 resp.json().then(newReview => onCreateReview(newReview))
             } else{
-                resp.json().then( error => error.errors)
+                resp.json().then( error => setErrors(error.errors))
             }
         })
     }
 
+    const displayError = errors.map( e => {
+        console.log(e)
+        return(
+            <p key={e} style={{color:"red"}}>{e}</p>
+        )
+    })
+
     return(
         <form onSubmit={handleSubmit}>
+            
             <div>
+                
                 <label htmlFor="headline">Headline:</label>
                 <p>
                     <input
@@ -77,6 +87,7 @@ function ReviewForm({user, restaurant, onCreateReview}){
             <div>
                 <input type="submit" value="Add Review"/>
             </div>
+            {displayError}
         </form>
     )
 }

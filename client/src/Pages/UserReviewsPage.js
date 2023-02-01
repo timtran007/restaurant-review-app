@@ -17,7 +17,16 @@ function UserReviewsPage({user}){
         })
     },[])
 
-    function onEditReview(editedReview){
+    function onEditReview(updatedUserReview){
+        const updatedUserReviews = userReviews
+        .map( review => {
+            if(review.id === updatedUserReview.id){
+                return updatedUserReview
+            } else{
+                return review
+            }
+        })
+        setUserReviews(updatedUserReviews)
 
     }
 

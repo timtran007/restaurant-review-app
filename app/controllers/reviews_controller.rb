@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
         find_user
         review = find_user.reviews.find(params[:id].to_i)
         review.destroy
-        head :no_content
+        render json: review
     end
 
     private

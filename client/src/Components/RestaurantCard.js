@@ -4,7 +4,10 @@ import ReviewForm from "./ReviewForm";
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-function RestaurantCard({restaurant, reviews}){
+function RestaurantCard({restaurant, reviews, user, onCreateReview}){
+    //create state to toggle button to show reviews
+    //pass user, if user we can show the button / show form to add a new review
+    
     
     return(
         <div>
@@ -38,7 +41,7 @@ function RestaurantCard({restaurant, reviews}){
                 </Button>
             </div>
             {/* show up only when user clicks the button */}
-            <ReviewForm />
+            <ReviewForm restaurant={restaurant} onCreateReview={onCreateReview} user={user}/>
         </Card>
         
         </div>

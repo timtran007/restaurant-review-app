@@ -31,7 +31,9 @@ function UserReviewsPage({user}){
     }
 
     function onDeleteReview(deletedReview){
-
+        const updatedUserReviews = userReviews
+        .filter( review => review.id !== deletedReview.id)
+        setUserReviews(updatedUserReviews)
     }
     
     return(

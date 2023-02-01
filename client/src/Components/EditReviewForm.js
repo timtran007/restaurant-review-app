@@ -34,17 +34,17 @@ function EditReviewForm({onEditReview, review}){
             },
             body: JSON.stringify(updatedReview)
         })
-        //need to set state with onEditReview callback
         .then(resp => {
             if (resp.ok){
                 resp.json().then( updatedReviewData => onEditReview(updatedReviewData))
+                setButtonClick(!buttonClick)
             } else{
                 resp.json().then( error => setErrors(error.errors))
             }
         })
-        setButtonClick(!buttonClick)
+        
     }
-    // const displayError = errors.map( e => e)
+    const displayError = errors.map( e => e)
 
     return(
         <div>
@@ -54,8 +54,8 @@ function EditReviewForm({onEditReview, review}){
 
             { buttonClick ? (
             <form onSubmit={handleSubmit}>
-                {/* {displayError} */}
                 <div>
+                    {displayError}
                     <label htmlFor="headline">Headline: </label>
                     <input
                         onChange={handleUpdate}
@@ -74,11 +74,11 @@ function EditReviewForm({onEditReview, review}){
                     />
                 </div>
                 <div>
-                    <label htmlFor="comment">Rating: </label>
+                    <label htmlFor="comment">Comment: </label>
                     <input
                         onChange={handleUpdate}
                         type="textarea"
-                        name="rating"
+                        name="comment"
                         value={updatedReview.comment}
                     />
                 </div>

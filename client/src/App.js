@@ -8,21 +8,15 @@ import UserPage from './Pages/UserPage';
 import RestaurantReviewPage from './Pages/RestaurantReviewPage';
 import UserReviewsPage from './Pages/UserReviewsPage';
 
-
-//Things to do:
-// create state for user log in information to pass to sessions
-// pass props down to respective components
-// pass user prop to RestaurantReviewpage, 
-
-
 function App() {
 
-  // create state for user
+  // state for user
   const [user, setUser] = useState(null)
 
-  // create state to house all restaurant information
+  // state to house all restaurant information
   const [allRestaurants, setAllRestaurants] = useState([])
 
+  // useEffect for auto-login
   useEffect(() => {
     fetch('/me')
     .then( resp => {
@@ -32,7 +26,7 @@ function App() {
     })
   }, [])
 
-  //write useEffect to do get fetch requests for all restaurants 
+  // useEffect to do get fetch requests for all restaurants 
   useEffect(() =>{
     fetch('/restaurants')
     .then(resp => resp.json())
@@ -61,8 +55,6 @@ function App() {
 
   }
   
-
-  console.log(allRestaurants)
   return (
     <div className="App">
         <Navigation user={user} setUser={setUser}/>

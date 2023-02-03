@@ -22,7 +22,7 @@ function LoginForm({onLogin}){
         })
     }
     
-    //use the useHistory hook to push to /profile, after logging in
+    //fetch for logging in as user
     function handleSubmit(e){
         e.preventDefault()
         fetch('/login', {

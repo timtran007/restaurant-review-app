@@ -1,8 +1,6 @@
 import React from "react";
 import RestaurantCard from '../Components/RestaurantCard';
 
-//pass user props down to Restaurant Card
-
 function RestaurantsContainer({allRestaurants, user, onCreateReview}) {
     return(
         <div>

@@ -38,7 +38,6 @@ function ReviewForm({user, restaurant, onCreateReview}){
     }
 
     const displayError = errors.map( e => {
-        console.log(e)
         return(
             <p key={e} style={{color:"red"}}>{e}</p>
         )

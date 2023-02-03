@@ -45,7 +45,6 @@ function EditReviewForm({onEditReview, review}){
         
     }
     const displayError = errors.map( e => {
-        console.log(e)
         return(
             <p key={e} style={{color:"red"}}>{e}</p>
         )

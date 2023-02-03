@@ -5,7 +5,6 @@ import EditReviewForm from "./EditReviewForm";
 import DeleteReview from "./DeleteReview";
 
 function ReviewsContainer({review, user, onEditReview, onDeleteReview}){
-    console.log("reviewscontainer", review)
             return(
                 <div>
                     <Card>

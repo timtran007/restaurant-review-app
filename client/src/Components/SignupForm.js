@@ -22,7 +22,7 @@ function SignupForm({onLogin}){
         })
     }
 
-    //set user with onLogin, use the useHistory hook to push to /profile
+    //fetch to create user
     function handleSubmit(e){
         e.preventDefault()
         fetch('/signup', {
@@ -44,7 +44,6 @@ function SignupForm({onLogin}){
     }
 
     const displayError = errors.map( e => {
-        console.log(e)
         return(
             <p key={e} style={{color:"red"}}>{e}</p>
         )

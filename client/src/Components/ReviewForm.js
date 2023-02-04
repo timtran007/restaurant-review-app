@@ -1,6 +1,11 @@
 import React, {useState} from "react";
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row';
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
-function ReviewForm({user, restaurant, onCreateReview}){
+function ReviewForm({user, restaurant, onCreateReview, onHandleSubmit}){
     const initialFormData = {
         headline: '',
         rating: 0,
@@ -31,6 +36,7 @@ function ReviewForm({user, restaurant, onCreateReview}){
         }).then( resp => {
             if(resp.ok){
                 resp.json().then(newReview => onCreateReview(newReview))
+                onHandleSubmit(false)
             } else{
                 resp.json().then( error => setErrors(error.errors))
             }
@@ -44,50 +50,76 @@ function ReviewForm({user, restaurant, onCreateReview}){
     })
 
     return(
-        <form onSubmit={handleSubmit}>
-            
-            <div>
+        <Card className="addReviewForm">
+            <Card.Text>Add a Review</Card.Text>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="formField">
                 
-                <label htmlFor="headline">Headline:</label>
-                <p>
-                    <input
+                <Form.Label
+                     htmlFor="headline"
+                     column="sm"
+                     sm={4}
+                >
+                    Headline:
+                </Form.Label>
+                <Col sm="auto">
+                    <Form.Control
                         type="text"
                         name="headline"
                         placeholder="enter headline"
                         onChange={handleChange}
                         value={formData.headline}
+                        size="sm"
                     />
-                </p>
-            </div>
-            <div>
-                <label htmlFor="rating">Rating:</label>
-                <p>
-                    <input
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="formField">
+                <Form.Label
+                     htmlFor="rating"
+                     column="sm"
+                     sm={4}
+                >
+                    Rating:
+                </Form.Label>
+                <Col sm="auto">
+                    <Form.Control
                         type="number"
                         name="rating"
                         placeholder="enter 1-5"
                         onChange={handleChange}
                         value={formData.rating}
+                        size="sm"
                     />
-                </p>
-            </div>
-            <div>
-                <label htmlFor="comment">Comments:</label>
-                <p>
-                    <input
-                        type="textarea"
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="formField">
+                <Form.Label
+                     htmlFor="comment"
+                     column="sm"
+                     sm="auto"
+                >
+                    Comments:
+                </Form.Label>
+                <Col sm="auto">
+                    <Form.Control
+                        as="textarea"
+                        rows={3}
                         name="comment"
                         placeholder="Write a review"
                         onChange={handleChange}
                         value={formData.comment}
+                        size="large"
                     />
-                </p>
-            </div>
+                </Col>
+            </Form.Group>
             <div>
-                <input type="submit" value="Add Review"/>
+                <Button variant="secondary" size="sm" type="submit">Add Review</Button>
             </div>
+            <div className="displayError">
             {displayError}
-        </form>
+            </div>
+        </Form>
+        </Card>
     )
 }
 

@@ -1,5 +1,12 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from "react-bootstrap/Col";
+import '../App.css'
+import Card from 'react-bootstrap/Card';
+
 
 function SignupForm({onLogin}){
     const [errors, setErrors] = useState([])
@@ -50,60 +57,92 @@ function SignupForm({onLogin}){
     })
 
     return(
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor='name'>Name</label>
-                <p> 
-                    <input 
+        <Card className="signUpForm">
+        <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="signUpFormField">
+                <Form.Label 
+                    htmlFor='name'
+                    column="lg"
+                    lg={5}
+                >
+                    Name:
+                </Form.Label>
+                <Col lg="auto"> 
+                    <Form.Control 
                         type="text"
                         name="name"
                         placeholder="enter name"
                         onChange={handleChange}
                         value={formData.name}
-                    />
-                </p>
-            </div>
-            <div>
-                <label htmlFor="user_name">Username:</label>
-                <p>
-                    <input
+                        size="lg"
+                        />
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="signUpFormField">
+                <Form.Label 
+                    htmlFor="user_name"
+                    column="lg"
+                    lg={5}
+                >
+                    Username:
+                </Form.Label>
+                <Col lg="auto">
+                    <Form.Control
                         type="text"
                         name="user_name"
                         placeholder="enter username"
                         onChange={handleChange}
                         value={formData.user_name}
-                    />
-                </p>
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <p>
-                    <input
+                        size="lg"
+                        />
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="signUpFormField">
+                <Form.Label 
+                    htmlFor="password"
+                    column="lg"
+                    lg={5}
+                >
+                    Password:
+                </Form.Label>
+                <Col lg="auto">
+                    <Form.Control
                         type="password"
                         name="password"
                         placeholder="enter password"
                         onChange={handleChange}
                         value={formData.password}
-                    />
-                </p>
-            </div>
-            <div>
-                <label htmlFor="password_confirmation">Password Confirmation:</label>
-                <p>
-                    <input
+                        size="lg"
+                        />
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="signUpFormField">
+                <Form.Label 
+                    htmlFor="password_confirmation"
+                    column="lg"
+                    lg={5}
+                >
+                    Password Confirmation:
+                </Form.Label>
+                <Col lg="auto">
+                    <Form.Control
                         type="password"
                         name="password_confirmation"
                         placeholder="confirm password"
                         onChange={handleChange}
                         value={formData.password_confirmation}
-                    />
-                </p>
-            </div>
+                        size="lg"
+                        />
+                </Col>
+            </Form.Group>
             <div>
-                <input type="submit" value="Sign up"/>
+                <Button className="loginButton" variant="secondary" type="submit" size="lg">
+                    Sign up
+                </Button>
             </div>
             {displayError}
-        </form>
+        </Form>
+        </Card>
     )
 }
 

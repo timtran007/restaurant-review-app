@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from "react-bootstrap/Col";
+import '../App.css'
+import Card from 'react-bootstrap/Card';
 
 
 
@@ -48,36 +54,56 @@ function LoginForm({onLogin}){
         )
     })
     return(
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="user_name">Username</label>
-                <p>
-                    <input
-                        type="text"
+        <Card className="loginForm">
+        <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} className="formField" >
+                <Form.Label 
+                    htmlFor="user_name"
+                    column="lg"
+                    lg="auto"
+                    >
+                    Username:
+                </Form.Label>
+                <Col lg="auto">
+                    <Form.Control 
+                        type="text" 
+                        placeholder="enter username"
                         name="user_name"
-                        placeholder="enter username information"
                         onChange={handleChange}
                         value={formData.user_name}
-                    />
-                </p>
-            </div>
-            <div>
-                <label htmlFor="password">password</label>
-                <p>
-                    <input
-                        type="password"
+                        size="lg"
+                        />
+                </Col>
+            </Form.Group>
+            <Form.Group as={Row} className="formField">
+                <Form.Label 
+                    htmlFor="password"
+                    column="lg"
+                    lg="auto"
+                    >
+                    Password:
+                </Form.Label>
+                <Col lg="auto">
+                    <Form.Control 
+                        type="password" 
+                        placeholder="enter password"
                         name="password"
-                        placeholder="enter password information"
                         onChange={handleChange}
                         value={formData.password}
-                    />
-                </p>
-            </div>
+                        size="lg"
+                        />
+                </Col>
+            </Form.Group>
             <div>
-                <input type="submit" value="Login"/>
+            <Button className="loginButton" variant="secondary" type="submit" size="lg">
+                Login
+            </Button>
             </div>
+            <div className="displayError">
             {displayError}
-        </form>
+            </div>
+        </Form>
+        </Card>
     )
 }
 

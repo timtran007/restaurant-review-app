@@ -6,17 +6,19 @@ import Foodies_Logo from '../Foodies_Logo.png'
 import { useHistory } from "react-router-dom";
 
 function Navigation({user, setUser}){
+    //useHistory is currently not working... 
     const history = useHistory()
-    //create handling of user logout
+
+    //fetch to logout user (delete session)
     function handleLogout(){
         fetch("/logout", {
             method: "DELETE"
         }).then( resp => {
             if (resp.ok){
                 setUser(null)
+                history.push("/login")
             }
-        })
-            history.push("/login")
+        }) 
     }
 
     return(

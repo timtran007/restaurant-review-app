@@ -12,7 +12,7 @@ function ReviewCard({review}){
                 <Card.Text>
                     {review.comment}
                 </Card.Text>
-                <Card.Subtitle>- {review.user_name}</Card.Subtitle>
+                <Card.Subtitle>- {review.user_name ? `${review.user_name}`: `${review.user.user_name}`}</Card.Subtitle>
                 
             </Card>
         </div>

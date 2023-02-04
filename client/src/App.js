@@ -50,9 +50,8 @@ function App() {
       } else{
         return r
       }
-    })
+    }) 
     setAllRestaurants(updatedRestaurants)
-
   }
   
   return (

@@ -15,7 +15,7 @@ function DeleteReview({onDeleteReview, review}){
     }
 
     return(
-        <Button onClick={handleDelete} variant='secondary' size='sm'>
+        <Button onClick={handleDelete} variant='outline-danger' size='sm'>
             Delete My Review
         </Button>
     )

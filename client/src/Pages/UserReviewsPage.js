@@ -38,7 +38,7 @@ function UserReviewsPage({user}){
     
     return(
         <div>
-            UserReviewsPage
+            <h2>My Reviews</h2>
             {userReviews.map( review => {
                 return(
                     <ReviewsContainer 

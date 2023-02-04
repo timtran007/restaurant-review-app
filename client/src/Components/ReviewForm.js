@@ -11,7 +11,6 @@ function ReviewForm({user, restaurant, onCreateReview, onHandleSubmit}){
         rating: 0,
         comment: '',
         restaurant_id: restaurant.id,
-        user_id: user.id
     }
     const [formData, setFormData] = useState(initialFormData)
     const [errors, setErrors] = useState([])

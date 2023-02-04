@@ -3,8 +3,9 @@ import ReviewCard from "./ReviewCard";
 import ReviewForm from "./ReviewForm";
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
+import "../App.css"
 
-function RestaurantCard({restaurant, reviews, user, onCreateReview}){
+function RestaurantCard({restaurant, reviews, user, onCreateReview, onHandleSubmit}){
     //state to control showing more content
     const [readReviewsClick, setReadReviewsClick] = useState(false)
     const [addReviewClick, setAddReviewClick] = useState(false)
@@ -16,14 +17,18 @@ function RestaurantCard({restaurant, reviews, user, onCreateReview}){
     function handleAddReviewClick(){
         setAddReviewClick(!addReviewClick)
     }
+
+    function onHandleAddReview(newState){
+        setAddReviewClick(newState)
+    }
     
     
     return(
         <div>
-        <Card>
-            <Card.Img variant="top" src={restaurant.image_url} />
+        <Card className="restaurantCard">
+            <Card.Title>{restaurant.name}</Card.Title>
+            <Card.Img variant="top" src={restaurant.image_url} className="restaurantImage"/>
             <Card.Body>
-              <Card.Title>{restaurant.name}</Card.Title>
               <Card.Text>
                 {restaurant.address}
                 </Card.Text>
@@ -31,13 +36,13 @@ function RestaurantCard({restaurant, reviews, user, onCreateReview}){
                     {restaurant.cuisine} | {restaurant.price} | ☆{restaurant.restaurant_rating} ({restaurant.number_of_reviews} reviews)
                 </Card.Text>
             </Card.Body>
-            <div>
+            <div className="readReviewButton">
                 <Button 
                     size="sm" 
-                    variant="primary"
+                    variant="secondary"
                     onClick={handleReadReviewsClick}
                 >
-                    Read the Reviews
+                    {readReviewsClick ? "collapse" : "Read the Reviews"}
                 </Button>
             </div>
             {reviews.map(review => {
@@ -48,18 +53,23 @@ function RestaurantCard({restaurant, reviews, user, onCreateReview}){
                             review={review}
                         />
                     ) 
-                } 
+                } else{
+                    return(
+                        <div></div>
+                    )
+                }
             })}
-            <div>
+            {user ? (<div>
                 <Button 
-                    variant='secondary' 
+                    variant='outline-secondary' 
                     size='sm' 
                     onClick={handleAddReviewClick}
+                    className="addReviewButton"
                 >
-                    Add a New Review
+                    {addReviewClick ? "close" : "Add a New Review"}
                 </Button>
-            </div>
-            { addReviewClick ? <ReviewForm restaurant={restaurant} onCreateReview={onCreateReview} user={user}/> : ""}
+            </div>) : ""}
+            { addReviewClick ? <ReviewForm restaurant={restaurant} onCreateReview={onCreateReview} user={user} onHandleSubmit={onHandleAddReview}/> : ""}
         </Card>
         </div>
     )

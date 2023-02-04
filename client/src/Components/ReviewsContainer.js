@@ -4,10 +4,11 @@ import Card from 'react-bootstrap/Card'
 import EditReviewForm from "./EditReviewForm";
 import DeleteReview from "./DeleteReview";
 
-function ReviewsContainer({review, user, onEditReview, onDeleteReview}){
+
+function ReviewsContainer({review, onEditReview, onDeleteReview}){
             return(
                 <div>
-                    <Card>
+                    <Card className="reviewCard">
                         <Card.Title>{review.headline}</Card.Title>
                         <Card.Text>
                             {review.restaurant.name}

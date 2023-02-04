@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 function ReviewCard({review}){
     return(
         <div>
-            <Card>
+            <Card className="reviewCard">
                 <Card.Title>{review.headline}</Card.Title>
                 <Card.Text>
                     ☆{review.rating}

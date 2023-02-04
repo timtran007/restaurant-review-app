@@ -55,7 +55,7 @@ function RestaurantCard({restaurant, reviews, user, onCreateReview, onHandleSubm
                     ) 
                 } else{
                     return(
-                        <div></div>
+                        <div key={review.id}></div>
                     )
                 }
             })}

@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5fadaccc.css",
+    "main.js": "/static/js/main.f63e8600.js",
+    "static/media/Foodies_Logo.png": "/static/media/Foodies_Logo.2914d8a34243b3c3c148.png",
+    "index.html": "/index.html",
+    "main.5fadaccc.css.map": "/static/css/main.5fadaccc.css.map",
+    "main.f63e8600.js.map": "/static/js/main.f63e8600.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5fadaccc.css",
+    "static/js/main.f63e8600.js"
+  ]
+}
